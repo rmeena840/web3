@@ -22,5 +22,8 @@ const input = {
 };
 
 //compile contract
-var output = solc.compile(JSON.stringify(input));
-console.log(output)
+const output = JSON.parse(solc.compile(JSON.stringify(input)));
+const interface = output.contracts["Inbox.sol"]["Inbox"].abi;
+const bytecode = output.contracts['Inbox.sol']["Inbox"].evm.bytecode.object;
+
+module.exports = { interface, bytecode }

@@ -24,8 +24,7 @@ contract FundMe {
         addrTofund[msg.sender] = msg.value;
     }
 
-    function withdraw() public {
-        require(msg.sender == owner, "Only owner can withdraw fund!!");
+    function withdraw() public onlyOwner {
         for (uint256 funderIdx = 0; funderIdx < funders.length; funderIdx++) {
             address funder = funders[funderIdx];
             addrTofund[funder] = 0;
@@ -42,5 +41,10 @@ contract FundMe {
         // call - recommended way
         (bool callSuccess, ) = payable(msg.sender).call(address(this).balance);
         require(callSuccess, "Call failed!");
+    }
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only owner can withdraw fund!!");
+        _;
     }
 }

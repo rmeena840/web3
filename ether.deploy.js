@@ -15,6 +15,21 @@ const main = async () => {
     console.log("Deployment txn: ", contract.deploymentTransaction());
     console.log("txn receipt: ", txnReceipt)
     console.log("Contract Deployed:", await contract.getAddress());
+
+    // interact with contract
+
+    // sendting raw txn
+    const txn = {
+        nonce: await wallet.getNonce(),
+        gasPrice: 20000000000,
+        gasLimit: 1000000,
+        to: null,
+        value: 0,
+        data: "0x" + bytecode,
+        chainId: 1337,
+    }
+    const sentTxn = await wallet.sendTransaction(txn);
+    console.log("signed txn response: ", sentTxn);
 }
 
 main()

@@ -4,17 +4,20 @@
     "description": "",
     "main": "./scripts/apply.ts",
     "scripts": {
-        "test": "mocha"
+        "test": "mocha",
+        "compile": "solcjs --bin --abi --include-path node_modules/ --base-path . -o . ./contracts/Inbox.sol"
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
         "axios": "^1.4.0",
-        "ganache-cli": "^6.12.2",
+        "ethers": "^6.7.1",
+        "ganache": "^7.9.1",
         "mocha": "^10.2.0",
         "moment": "^2.29.4",
         "nodemon": "^3.0.1",
         "solc": "^0.8.21",
+        "truffle": "^5.11.2",
         "ts-node": "^10.9.1",
         "web3": "^4.1.0"
     }
